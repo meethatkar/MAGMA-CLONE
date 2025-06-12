@@ -1,7 +1,16 @@
 @font-face {
     font-family: a;
     src: url(assets/github-asset/jost-variable.ttf);
-}*{
+}
+@font-face {
+    font-family: b;
+    src: url(assets/github-asset/KFOlCnqEu92Fr1MmEU9fBBc4\ \(1\).ttf);
+}
+@font-face {
+    font-family: c;
+    src: url(assets/github-asset/KFOmCnqEu92Fr1Mu4mxK\ \(1\).ttf);
+}
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -92,4 +101,25 @@ nav>img{
     background-color: white;
     color: #0841DE;
     font-weight: 600;
+}
+
+/* PAGE 2 */
+#page-2{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-color: #0A3CCE;
+    padding: 10% 8%;
+    font-family: a;
+}
+#page-2>h2{
+    color: white;
+    font-weight: 100;
+    font-size: 1.9vw;
+}
+#page-2>p{
+    color: rgba(255, 255, 255, 0.445);
+    font-size: 3.5vw;
+    margin-top: 5%;
+    width: 90%;
 }
