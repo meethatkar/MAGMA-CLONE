@@ -1,0 +1,95 @@
+@font-face {
+    font-family: a;
+    src: url(assets/github-asset/jost-variable.ttf);
+}*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+#main{
+overflow: hidden;
+position: relative;
+}
+/* page-1 */
+#page-1{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+#page-1>video{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* NAV */
+nav{
+    height: 9%;
+    width: 100%;
+    background-color: #0841DE;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2% 2%;
+    position: absolute;
+}
+nav>img{
+    width: 10vw;
+        margin-top: -5vh;
+    /* margin-top: -5vh; */
+}
+#nav-btn{
+    width: 20%;
+    text-align: end;
+}
+#nav-btn>button{
+    margin-top: 2%;
+    padding: 3% 7%;
+    border-radius: 50px;
+    font-size: 1.1vw;
+    color: white;
+    /* font-weight: 500; */
+    background-color: #0841DE;
+    border: 1px solid white;
+    margin-right: 4%;
+    font-family: a;
+}
+
+#pg-1-text{
+    height: 50vh;
+    width: 45%;
+    position: absolute;
+    top: 55%;
+    left: 5%;
+    font-family: a;
+}
+#pg-1-text>h1{
+    color: white;
+    font-weight: 100;
+    font-size: 5vw;
+    line-height: 4.9vw;
+    margin-bottom: 2%;
+}
+#text-lower{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#text-lower>p{
+    font-size: 1.3vw;
+    color: white;
+}
+#text-lower>button{
+    padding: 2% 5%;
+    font-size: 1.1vw;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: white;
+    color: #0841DE;
+    font-weight: 600;
+}
