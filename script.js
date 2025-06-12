@@ -1,5 +1,5 @@
-gsap.registerPlugin(ScrollTrigger);
-// FOR LOCOMOTIVE WORKING WITH GSAP WE NEED TO WRITE THIS BOILER CODE, WHICH IS TAKEN FROM LOCOMOTIVE CODEPEN (first link)
+function loco(){
+    gsap.registerPlugin(ScrollTrigger);
 // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
 
 const locoScroll = new LocomotiveScroll({
@@ -22,9 +22,9 @@ ScrollTrigger.scrollerProxy("#main", {
 });
 
 
-tl.from(".purple p", {scale: 0.3, rotation:45, autoAlpha: 0, ease: "power2"})
-  .from(".line-3", {scaleX: 0, transformOrigin: "left center", ease: "none"}, 0)
-  .to(".purple", {backgroundColor: "#28a92b"}, 0);
+// tl.from(".purple p", {scale: 0.3, rotation:45, autoAlpha: 0, ease: "power2"})
+//   .from(".line-3", {scaleX: 0, transformOrigin: "left center", ease: "none"}, 0)
+//   .to(".purple", {backgroundColor: "#28a92b"}, 0);
 
 
 
@@ -33,3 +33,26 @@ ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 
 // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 ScrollTrigger.refresh();
+}
+// FOR LOCOMOTIVE WORKING WITH GSAP WE NEED TO WRITE THIS BOILER CODE, WHICH IS TAKEN FROM LOCOMOTIVE CODEPEN (first link)
+loco();
+
+var clutter = "";           //WILL STORE EACH WORD
+
+document.querySelector("#page-2>p").textContent.split(" ").forEach(function(dets){
+    clutter += `<span> ${dets} </span>`         //THIS IS STRING LITERALS
+    document.querySelector("#page-2>p").innerHTML = clutter;
+    console.log(document.querySelector("#page-2>p").innerHTML);
+})
+gsap.to("#page-2>p>span",{
+    scrollTrigger:{
+        trigger: "#page-2>p>span",
+        scroller: "#main",
+        start: "top bottom",        //first parameter is for elemnt's position and 2nd for page's position.
+        end: "bottom top",
+        scrub: 0.5 ,         //creates a delay of 0.5 second when start (make smooth effect)
+        markers: true,
+    },
+    stagger:.2,
+    color: "white",
+})
