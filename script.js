@@ -37,13 +37,15 @@ function loco() {
 // FOR LOCOMOTIVE WORKING WITH GSAP WE NEED TO WRITE THIS BOILER CODE, WHICH IS TAKEN FROM LOCOMOTIVE CODEPEN (first link)
 loco();
 
+// PAGE 2
 var clutter = "";           //WILL STORE EACH WORD
 
 document.querySelector("#page-2>p").textContent.split(" ").forEach(function (dets) {
     clutter += `<span> ${dets} </span>`         //THIS IS TEMPLATE LITERALS
-    document.querySelector("#page-2>p").innerHTML = clutter;
+    document.querySelector("#page-2>p").innerHTML = clutter;        //replaced previous content with new clutter content
     // console.log(document.querySelector("#page-2>p").innerHTML);
 })
+//as we have changed innerHTML of that div with cluuter's content, we can achieve below thing.
 gsap.to("#page-2>p>span", {
     scrollTrigger: {
         trigger: "#page-2>p>span",
@@ -53,7 +55,7 @@ gsap.to("#page-2>p>span", {
         scrub: 0.5,         //creates a delay of 0.5 second when start (make smooth effect)
         // markers: true,
     },
-    stagger: .2,
+    stagger: .2,        //for all <span> element.
     color: "white",
 })
 
@@ -140,84 +142,86 @@ function canvas1() {
         assets/github-asset/frames00199.png
         assets/github-asset/frames00202.png
     `;
-    var imgArr = data.split("\n");      //makes array in which each element is loc of image.
-    // console.log("files function ", index);
-    
-    return imgArr[index];       //argument index is passed here.
+        var imgArr = data.split("\n");      //makes array in which each element is loc of image.
+        // console.log("files function ", index);
+
+        return imgArr[index];       //argument index is passed here.
     }
 
-const frameCount = 67;
+    const frameCount = 67;
 
-const images = [];
-const imageSeq = {
-    frame: 1,
-};
+    const images = [];
+    const imageSeq = {
+        frame: 1,
+    };
 
-for (let i=0; i<frameCount; i++){
-    const img = new Image();
-    img.src = files(i);         //calling function in which location of imgs are stores, it will return passed number's img location.
-    images.push(img);
-}
+    for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        img.src = files(i);         //calling function in which location of imgs are stores, it will return passed number's img location.
+        images.push(img);
+    }
 
-gsap.to(imageSeq, {        
-    frame: frameCount - 1,       //animating frame property of imageSeq object
-    snap: "frame",
-    // When the animation tries to set frame to, say, 1.2, snap: "frame" forces it to either 1 or 2 (the nearest whole number). If it's 2.7, it snaps to 3. This means the onUpdate function (render in your case) will always receive a clean, whole frame number.
-    ease: `none`,
-    scrollTrigger: {
-        scrub: 0.5,
-        trigger: `#page-3`,
-        start: `top top`,
-        end: `250% top`,
-        scroller: `#main`,
-    },
-    onUpdate: render,       //this is called to display new image on canvas.
-});
+    gsap.to(imageSeq, {
+        frame: frameCount - 1,       //animating frame property of imageSeq object
+        snap: "frame",
+        // When the animation tries to set frame to, say, 1.2, snap: "frame" forces it to either 1 or 2 (the nearest whole number). If it's 2.7, it snaps to 3. This means the onUpdate function (render in your case) will always receive a clean, whole frame number.
+        ease: `none`,
+        scrollTrigger: {
+            scrub: 0.5,
+            trigger: `#page-3`,
+            start: `top top`,
+            end: `250% top`,
+            scroller: `#main`,
+        },
+        onUpdate: render,       //this is called to display new image on canvas.
+    });
 
-images[1].onload = render;
+    images[1].onload = render;
+    // The line images[1].onload = render; means that the render function will be called automatically as soon as the second image in your images array (the one at index 1) has completely finished loading.
 
-function render(){
-    scaleImage(images[imageSeq.frame], context);
-    // yaha pe images array mai se framecount-1 karke vus index ke element ko send kiya ja rha hai. with context
-}
+    function render() {
+        scaleImage(images[imageSeq.frame], context);
+        // yaha pe images array mai se framecount-1 karke vus index ke element ko send kiya ja rha hai. with context
+    }
 
-function scaleImage(img, ctx){
-    var canvas = ctx.canvas;
-    var hRatio = canvas.width / img.width;
-    var vRatio = canvas.height / img.height;        /* this is done to know how much we have to scale image to make it fit in canvas.
+    function scaleImage(img, ctx) {
+        var canvas = ctx.canvas;
+        var hRatio = canvas.width / img.width;
+        var vRatio = canvas.height / img.height;        /* this is done to know how much we have to scale image to make it fit in canvas.
     EG canvas.h = 800px;
     img.h = 1600px; so as per our formula VR = 800/1600 => 0.5
     so img ko scale(0.5) karna hoga to make it fit in canvas.
     */
-    var ratio = Math.max(hRatio,vRatio);
+        var ratio = Math.max(hRatio, vRatio);
 
-    var centerShift_x = (canvas.width - img.width * ratio) / 2;
-    var centerShift_y = (canvas.height - img.height * ratio) / 2;
-    /*
-    example
-    cx = 800-100*0.45 => (BODMAS RULE) 175,
-    so we have to shfit img from left and right side by 175px.
-    */
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(
-        img,        //IMAGE OBJECT TO DRAW
-        0,          //SOURCE X
-        0,          //SOURCE Y
-        img.width,      //SOURCE WIDTH
-        img.height,     //SOURCE HEIGHT
-        centerShift_x,      //DESTINATION X
-        centerShift_y,      //DESTINATION Y
-        img.width * ratio,      //DESTINATION WIDTH     (WIDTH ON CANVAS)
-        img.height * ratio      //DESTINCATION HEIGHT   (HEIGHT ON CANVAS)
-    );
-}
-ScrollTrigger.create({
-    trigger: "#page-3",
-    pin: true,
-    scroller: "#main",
-    start: "top top",
-    end: "250% top",
-});
+        var centerShift_x = (canvas.width - img.width * ratio) / 2;
+        var centerShift_y = (canvas.height - img.height * ratio) / 2;
+        /*
+        example
+        cx = 800-100*0.45 => (BODMAS RULE) 175,
+        so we have to shfit img from left and right side by 175px.
+        */
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // means it clears the entire canvas from its top-left corner (0,0) to its full width and height
+        ctx.drawImage(
+            img,        //IMAGE OBJECT TO DRAW
+            0,          //SOURCE X
+            0,          //SOURCE Y
+            img.width,      //SOURCE WIDTH
+            img.height,     //SOURCE HEIGHT
+            centerShift_x,      //DESTINATION X
+            centerShift_y,      //DESTINATION Y
+            img.width * ratio,      //DESTINATION WIDTH     (WIDTH ON CANVAS)
+            img.height * ratio      //DESTINCATION HEIGHT   (HEIGHT ON CANVAS)
+        );
+    }
+    ScrollTrigger.create({
+        trigger: "#page-3",
+        pin: true,
+        scroller: "#main",
+        start: "top top",
+        end: "250% top",
+    });
 }
 canvas1();
 
@@ -242,6 +246,7 @@ gsap.to("#page-4>h1>span", {
     stagger: .2,
     color: "white",
 })
+
 
 // CANVAS 2
 function canvas2() {
@@ -315,106 +320,365 @@ function canvas2() {
         assets/github-asset/bridges00160.png
         assets/github-asset/bridges00163.png
     `;
-    var imgArr = data.split("\n");      //makes array in which each element is loc of image.
-    // console.log("files function ", index);
-    
-    return imgArr[index];       //argument index is passed here.
+        var imgArr = data.split("\n");      //makes array in which each element is loc of image.
+        // console.log("files function ", index);
+
+        return imgArr[index];       //argument index is passed here.
     }
 
-const frameCount = 53;
+    const frameCount = 53;
 
-const images = [];
-const imageSeq = {
-    frame: 1,
-};
+    const images = [];
+    const imageSeq = {
+        frame: 1,
+    };
 
-for (let i=0; i<frameCount; i++){
-    const img = new Image();
-    img.src = files(i);         //calling function in which location of imgs are stores, it will return passed number's img location.
-    images.push(img);
-}
+    for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        img.src = files(i);         //calling function in which location of imgs are stores, it will return passed number's img location.
+        images.push(img);
+    }
 
-gsap.to(imageSeq, {        
-    frame: frameCount - 1,       //animating frame property of imageSeq object
-    snap: "frame",
-    // When the animation tries to set frame to, say, 1.2, snap: "frame" forces it to either 1 or 2 (the nearest whole number). If it's 2.7, it snaps to 3. This means the onUpdate function (render in your case) will always receive a clean, whole frame number.
-    ease: `none`,
-    scrollTrigger: {
-        scrub: 0.5,
-        trigger: `#page-5`,
-        start: `top top`,
-        end: `250% top`,
-        scroller: `#main`,
-    },
-    onUpdate: render,       //this is called to display new image on canvas.
-});
+    gsap.to(imageSeq, {
+        frame: frameCount - 1,       //animating frame property of imageSeq object
+        snap: "frame",
+        // When the animation tries to set frame to, say, 1.2, snap: "frame" forces it to either 1 or 2 (the nearest whole number). If it's 2.7, it snaps to 3. This means the onUpdate function (render in your case) will always receive a clean, whole frame number.
+        ease: `none`,
+        scrollTrigger: {
+            scrub: 0.5,
+            trigger: `#page-5`,
+            start: `top top`,
+            end: `250% top`,
+            scroller: `#main`,
+        },
+        onUpdate: render,       //this is called to display new image on canvas.
+    });
 
-images[1].onload = render;
+    images[1].onload = render;
 
-function render(){
-    scaleImage(images[imageSeq.frame], context);
-    // yaha pe images array mai se framecount-1 karke vus index ke element ko send kiya ja rha hai. with context
-}
+    function render() {
+        scaleImage(images[imageSeq.frame], context);
+        // yaha pe images array mai se framecount-1 karke vus index ke element ko send kiya ja rha hai. with context
+    }
 
-function scaleImage(img, ctx){
-    var canvas = ctx.canvas;
-    var hRatio = canvas.width / img.width;
-    var vRatio = canvas.height / img.height;        /* this is done to know how much we have to scale image to make it fit in canvas.
+    function scaleImage(img, ctx) {
+        var canvas = ctx.canvas;
+        var hRatio = canvas.width / img.width;
+        var vRatio = canvas.height / img.height;        /* this is done to know how much we have to scale image to make it fit in canvas.
     EG canvas.h = 800px;
     img.h = 1600px; so as per our formula VR = 800/1600 => 0.5
     so img ko scale(0.5) karna hoga to make it fit in canvas.
     */
-    var ratio = Math.max(hRatio,vRatio);
+        var ratio = Math.max(hRatio, vRatio);
 
-    var centerShift_x = (canvas.width - img.width * ratio) / 2;
-    var centerShift_y = (canvas.height - img.height * ratio) / 2;
-    /*
-    example
-    cx = 800-100*0.45 => (BODMAS RULE) 175,
-    so we have to shfit img from left and right side by 175px.
-    */
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(
-        img,        //IMAGE OBJECT TO DRAW
-        0,          //SOURCE X
-        0,          //SOURCE Y
-        img.width,      //SOURCE WIDTH
-        img.height,     //SOURCE HEIGHT
-        centerShift_x,      //DESTINATION X
-        centerShift_y,      //DESTINATION Y
-        img.width * ratio,      //DESTINATION WIDTH     (WIDTH ON CANVAS)
-        img.height * ratio      //DESTINCATION HEIGHT   (HEIGHT ON CANVAS)
-    );
-}
-ScrollTrigger.create({
-    trigger: "#page-5",
-    pin: true,
-    scroller: "#main",
-    start: "top top",
-    end: "250% top",
-});
+        var centerShift_x = (canvas.width - img.width * ratio) / 2;
+        var centerShift_y = (canvas.height - img.height * ratio) / 2;
+        /*
+        example
+        cx = 800-100*0.45 => (BODMAS RULE) 175,
+        so we have to shfit img from left and right side by 175px.
+        */
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(
+            img,        //IMAGE OBJECT TO DRAW
+            0,          //SOURCE X
+            0,          //SOURCE Y
+            img.width,      //SOURCE WIDTH
+            img.height,     //SOURCE HEIGHT
+            centerShift_x,      //DESTINATION X
+            centerShift_y,      //DESTINATION Y
+            img.width * ratio,      //DESTINATION WIDTH     (WIDTH ON CANVAS)
+            img.height * ratio      //DESTINCATION HEIGHT   (HEIGHT ON CANVAS)
+        );
+    }
+    ScrollTrigger.create({
+        trigger: "#page-5",
+        pin: true,
+        scroller: "#main",
+        start: "top top",
+        end: "250% top",
+    });
 }
 canvas2();
 
 //      CLUTTER FOR PAGE 6
 clutter = "";
 var words = document.querySelector("#page-6>h1").textContent.split(" ");
-words.forEach((word)=>{
+words.forEach((word) => {
     clutter += `<span> ${word} </span>`;
     document.querySelector("#page-6>h1").innerHTML = clutter;
     console.log(clutter);
-    
+
 });
 
-gsap.to("#page-6>h1>span",{
-    scrollTrigger:{
+gsap.to("#page-6>h1>span", {
+    scrollTrigger: {
         trigger: "#page-6>h1>span",
         scroller: "#main",
         start: "top bottom",
         end: "top top",
-        scrub:0.5,
+        scrub: 0.5,
         // markers: true,
     },
-    stagger:0.2,
+    stagger: 0.2,
     color: "white"
+})
+
+function canvas3() {
+    const canvas = document.querySelector("#page-7>canvas");
+    const context = canvas.getContext("2d");           //THIS RETURNS CANVASRENDERINGCONTEXT2D OBJECT (IT IS DRAWING TOOLKIT)
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    //THIS WILL RUN WHENEVER WINDOW IS RESIZED, PURPOSE IS THAT CANVAS HEIGHT AND WIDTH WILL BE BASED ON CURRENT RESIZED WINDOW
+    window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        render();
+    });
+
+    function files(index) {
+        var data = `
+       https://thisismagma.com/assets/home/lore/seq/1.webp?2
+https://thisismagma.com/assets/home/lore/seq/2.webp?2
+https://thisismagma.com/assets/home/lore/seq/3.webp?2
+https://thisismagma.com/assets/home/lore/seq/4.webp?2
+https://thisismagma.com/assets/home/lore/seq/5.webp?2
+https://thisismagma.com/assets/home/lore/seq/6.webp?2
+https://thisismagma.com/assets/home/lore/seq/7.webp?2
+https://thisismagma.com/assets/home/lore/seq/8.webp?2
+https://thisismagma.com/assets/home/lore/seq/9.webp?2
+https://thisismagma.com/assets/home/lore/seq/10.webp?2
+https://thisismagma.com/assets/home/lore/seq/11.webp?2
+https://thisismagma.com/assets/home/lore/seq/12.webp?2
+https://thisismagma.com/assets/home/lore/seq/13.webp?2
+https://thisismagma.com/assets/home/lore/seq/14.webp?2
+https://thisismagma.com/assets/home/lore/seq/15.webp?2
+https://thisismagma.com/assets/home/lore/seq/16.webp?2
+https://thisismagma.com/assets/home/lore/seq/17.webp?2
+https://thisismagma.com/assets/home/lore/seq/18.webp?2
+https://thisismagma.com/assets/home/lore/seq/19.webp?2
+https://thisismagma.com/assets/home/lore/seq/20.webp?2
+https://thisismagma.com/assets/home/lore/seq/21.webp?2
+https://thisismagma.com/assets/home/lore/seq/22.webp?2
+https://thisismagma.com/assets/home/lore/seq/23.webp?2
+https://thisismagma.com/assets/home/lore/seq/24.webp?2
+https://thisismagma.com/assets/home/lore/seq/25.webp?2
+https://thisismagma.com/assets/home/lore/seq/26.webp?2
+https://thisismagma.com/assets/home/lore/seq/27.webp?2
+https://thisismagma.com/assets/home/lore/seq/28.webp?2
+https://thisismagma.com/assets/home/lore/seq/29.webp?2
+https://thisismagma.com/assets/home/lore/seq/30.webp?2
+https://thisismagma.com/assets/home/lore/seq/31.webp?2
+https://thisismagma.com/assets/home/lore/seq/32.webp?2
+https://thisismagma.com/assets/home/lore/seq/33.webp?2
+https://thisismagma.com/assets/home/lore/seq/34.webp?2
+https://thisismagma.com/assets/home/lore/seq/35.webp?2
+https://thisismagma.com/assets/home/lore/seq/36.webp?2
+https://thisismagma.com/assets/home/lore/seq/37.webp?2
+https://thisismagma.com/assets/home/lore/seq/38.webp?2
+https://thisismagma.com/assets/home/lore/seq/39.webp?2
+https://thisismagma.com/assets/home/lore/seq/40.webp?2
+https://thisismagma.com/assets/home/lore/seq/41.webp?2
+https://thisismagma.com/assets/home/lore/seq/42.webp?2
+https://thisismagma.com/assets/home/lore/seq/43.webp?2
+https://thisismagma.com/assets/home/lore/seq/44.webp?2
+https://thisismagma.com/assets/home/lore/seq/45.webp?2
+https://thisismagma.com/assets/home/lore/seq/46.webp?2
+https://thisismagma.com/assets/home/lore/seq/47.webp?2
+https://thisismagma.com/assets/home/lore/seq/48.webp?2
+https://thisismagma.com/assets/home/lore/seq/49.webp?2
+https://thisismagma.com/assets/home/lore/seq/50.webp?2
+https://thisismagma.com/assets/home/lore/seq/51.webp?2
+https://thisismagma.com/assets/home/lore/seq/52.webp?2
+https://thisismagma.com/assets/home/lore/seq/53.webp?2
+https://thisismagma.com/assets/home/lore/seq/54.webp?2
+https://thisismagma.com/assets/home/lore/seq/55.webp?2
+https://thisismagma.com/assets/home/lore/seq/56.webp?2
+https://thisismagma.com/assets/home/lore/seq/57.webp?2
+https://thisismagma.com/assets/home/lore/seq/58.webp?2
+https://thisismagma.com/assets/home/lore/seq/59.webp?2
+https://thisismagma.com/assets/home/lore/seq/60.webp?2
+https://thisismagma.com/assets/home/lore/seq/61.webp?2
+https://thisismagma.com/assets/home/lore/seq/62.webp?2
+https://thisismagma.com/assets/home/lore/seq/63.webp?2
+https://thisismagma.com/assets/home/lore/seq/64.webp?2
+https://thisismagma.com/assets/home/lore/seq/65.webp?2
+https://thisismagma.com/assets/home/lore/seq/66.webp?2
+https://thisismagma.com/assets/home/lore/seq/67.webp?2
+https://thisismagma.com/assets/home/lore/seq/68.webp?2
+https://thisismagma.com/assets/home/lore/seq/69.webp?2
+https://thisismagma.com/assets/home/lore/seq/70.webp?2
+https://thisismagma.com/assets/home/lore/seq/71.webp?2
+https://thisismagma.com/assets/home/lore/seq/72.webp?2
+https://thisismagma.com/assets/home/lore/seq/73.webp?2
+https://thisismagma.com/assets/home/lore/seq/74.webp?2
+https://thisismagma.com/assets/home/lore/seq/75.webp?2
+https://thisismagma.com/assets/home/lore/seq/76.webp?2
+https://thisismagma.com/assets/home/lore/seq/77.webp?2
+https://thisismagma.com/assets/home/lore/seq/78.webp?2
+https://thisismagma.com/assets/home/lore/seq/79.webp?2
+https://thisismagma.com/assets/home/lore/seq/80.webp?2
+https://thisismagma.com/assets/home/lore/seq/81.webp?2
+https://thisismagma.com/assets/home/lore/seq/82.webp?2
+https://thisismagma.com/assets/home/lore/seq/83.webp?2
+https://thisismagma.com/assets/home/lore/seq/84.webp?2
+https://thisismagma.com/assets/home/lore/seq/85.webp?2
+https://thisismagma.com/assets/home/lore/seq/86.webp?2
+https://thisismagma.com/assets/home/lore/seq/87.webp?2
+https://thisismagma.com/assets/home/lore/seq/88.webp?2
+https://thisismagma.com/assets/home/lore/seq/89.webp?2
+https://thisismagma.com/assets/home/lore/seq/90.webp?2
+https://thisismagma.com/assets/home/lore/seq/91.webp?2
+https://thisismagma.com/assets/home/lore/seq/92.webp?2
+https://thisismagma.com/assets/home/lore/seq/93.webp?2
+https://thisismagma.com/assets/home/lore/seq/94.webp?2
+https://thisismagma.com/assets/home/lore/seq/95.webp?2
+https://thisismagma.com/assets/home/lore/seq/96.webp?2
+https://thisismagma.com/assets/home/lore/seq/97.webp?2
+https://thisismagma.com/assets/home/lore/seq/98.webp?2
+https://thisismagma.com/assets/home/lore/seq/99.webp?2
+https://thisismagma.com/assets/home/lore/seq/100.webp?2
+https://thisismagma.com/assets/home/lore/seq/101.webp?2
+https://thisismagma.com/assets/home/lore/seq/102.webp?2
+https://thisismagma.com/assets/home/lore/seq/103.webp?2
+https://thisismagma.com/assets/home/lore/seq/104.webp?2
+https://thisismagma.com/assets/home/lore/seq/105.webp?2
+https://thisismagma.com/assets/home/lore/seq/106.webp?2
+https://thisismagma.com/assets/home/lore/seq/107.webp?2
+https://thisismagma.com/assets/home/lore/seq/108.webp?2
+https://thisismagma.com/assets/home/lore/seq/109.webp?2
+https://thisismagma.com/assets/home/lore/seq/110.webp?2
+https://thisismagma.com/assets/home/lore/seq/111.webp?2
+https://thisismagma.com/assets/home/lore/seq/112.webp?2
+https://thisismagma.com/assets/home/lore/seq/113.webp?2
+https://thisismagma.com/assets/home/lore/seq/114.webp?2
+https://thisismagma.com/assets/home/lore/seq/115.webp?2
+https://thisismagma.com/assets/home/lore/seq/116.webp?2
+https://thisismagma.com/assets/home/lore/seq/117.webp?2
+https://thisismagma.com/assets/home/lore/seq/118.webp?2
+https://thisismagma.com/assets/home/lore/seq/119.webp?2
+https://thisismagma.com/assets/home/lore/seq/120.webp?2
+https://thisismagma.com/assets/home/lore/seq/121.webp?2
+https://thisismagma.com/assets/home/lore/seq/122.webp?2
+https://thisismagma.com/assets/home/lore/seq/123.webp?2
+https://thisismagma.com/assets/home/lore/seq/124.webp?2
+https://thisismagma.com/assets/home/lore/seq/125.webp?2
+https://thisismagma.com/assets/home/lore/seq/126.webp?2
+https://thisismagma.com/assets/home/lore/seq/127.webp?2
+https://thisismagma.com/assets/home/lore/seq/128.webp?2
+https://thisismagma.com/assets/home/lore/seq/129.webp?2
+https://thisismagma.com/assets/home/lore/seq/130.webp?2
+https://thisismagma.com/assets/home/lore/seq/131.webp?2
+https://thisismagma.com/assets/home/lore/seq/132.webp?2
+https://thisismagma.com/assets/home/lore/seq/133.webp?2
+https://thisismagma.com/assets/home/lore/seq/134.webp?2
+    `;
+        var imgArr = data.split("\n");      //makes array in which each element is loc of image.
+        // console.log("files function ", index);
+
+        return imgArr[index];       //argument index is passed here.
+    }
+
+    const frameCount = 134;
+
+    const images = [];
+    const imageSeq = {
+        frame: 1,
+    };
+
+    for (let i = 0; i < frameCount; i++) {
+        const img = new Image();
+        img.src = files(i);         //calling function in which location of imgs are stores, it will return passed number's img location.
+        images.push(img);
+    }
+
+    gsap.to(imageSeq, {
+        frame: frameCount - 1,       //animating frame property of imageSeq object
+        snap: "frame",
+        // When the animation tries to set frame to, say, 1.2, snap: "frame" forces it to either 1 or 2 (the nearest whole number). If it's 2.7, it snaps to 3. This means the onUpdate function (render in your case) will always receive a clean, whole frame number.
+        ease: `none`,
+        scrollTrigger: {
+            scrub: 0.5,
+            trigger: `#page-7`,
+            start: `top top`,
+            end: `250% top`,
+            scroller: `#main`,
+        },
+        onUpdate: render,       //this is called to display new image on canvas.
+    });
+
+    images[1].onload = render;
+    // The line images[1].onload = render; means that the render function will be called automatically as soon as the second image in your images array (the one at index 1) has completely finished loading.
+
+    function render() {
+        scaleImage(images[imageSeq.frame], context);
+        // yaha pe images array mai se framecount-1 karke vus index ke element ko send kiya ja rha hai. with context
+    }
+
+    function scaleImage(img, ctx) {
+        var canvas = ctx.canvas;
+        var hRatio = canvas.width / img.width;
+        var vRatio = canvas.height / img.height;        /* this is done to know how much we have to scale image to make it fit in canvas.
+    EG canvas.h = 800px;
+    img.h = 1600px; so as per our formula VR = 800/1600 => 0.5
+    so img ko scale(0.5) karna hoga to make it fit in canvas.
+    */
+        var ratio = Math.max(hRatio, vRatio);
+
+        var centerShift_x = (canvas.width - img.width * ratio) / 2;
+        var centerShift_y = (canvas.height - img.height * ratio) / 2;
+        /*
+        example
+        cx = 800-100*0.45 => (BODMAS RULE) 175,
+        so we have to shfit img from left and right side by 175px.
+        */
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // means it clears the entire canvas from its top-left corner (0,0) to its full width and height
+        ctx.drawImage(
+            img,        //IMAGE OBJECT TO DRAW
+            0,          //SOURCE X
+            0,          //SOURCE Y
+            img.width,      //SOURCE WIDTH
+            img.height,     //SOURCE HEIGHT
+            centerShift_x,      //DESTINATION X
+            centerShift_y,      //DESTINATION Y
+            img.width * ratio,      //DESTINATION WIDTH     (WIDTH ON CANVAS)
+            img.height * ratio      //DESTINCATION HEIGHT   (HEIGHT ON CANVAS)
+        );
+    }
+    ScrollTrigger.create({
+        trigger: "#page-7",
+        pin: true,
+        scroller: "#main",
+        start: "top top",
+        end: "250% top",
+    });
+}
+canvas3();
+
+//  canvas 3 (circle effect)
+gsap.to(".page-7-cir",{
+    scrollTrigger:{
+        scroller: "#main",
+        trigger: ".page-7-cir",
+        start: "top center",        //element's top on page's center
+        end: "bottom top",
+        // markers: true,
+        scrub: 0.5
+    },
+    opacity: 1,
+    scale: 1.7
+})
+gsap.to(".page-7-cir-inner",{
+    scrollTrigger:{
+        scroller: "#main",
+        trigger: ".page-7-cir-inner",
+        start: "top center",        //element's top on page's center
+        end: "bottom top",
+        markers: true,
+        scrub: 0.5
+    },
+    backgroundColor: "#0b2fc17e"
 })
