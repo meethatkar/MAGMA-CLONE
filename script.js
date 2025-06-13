@@ -677,7 +677,7 @@ gsap.to(".page-7-cir-inner",{
         trigger: ".page-7-cir-inner",
         start: "top center",        //element's top on page's center
         end: "bottom top",
-        markers: true,
+        // markers: true,
         scrub: 0.5
     },
     backgroundColor: "#0b2fc17e"
