@@ -277,6 +277,7 @@ nav>img{
     width: 100vw;
     background-color: #093DCD;
     display: flex;
+    justify-content: space-around;
 }
 #p-9-left{
     height: 100%;
@@ -295,16 +296,58 @@ nav>img{
 }
 #p-9-right{
     height: 100%;
-    width: 60%;
+    width: 50%;
+    /* background-color: aliceblue; */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    position: relative;
 }
-#p-9-right img{
+#image-wrapper>img{
     height: 70%;
-    width: 95%;
+    width: 100%;
     object-fit: cover;
     border-radius: 20px;
+    transition: all ease-in-out 0.5s;
+}
+#image-wrapper{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    /* gap: 10%; */
+}
+#p-9-right>button{
+    margin: 2%;
+    background-color:transparent;
+    border: none;
+    color: white;
+    font-size: 2vw;
+    position: absolute;
+    top: 85%;
+    padding: 0.5% 2%;
+    border-radius: 20px;
+    opacity: 0.5;
+}
+#btn-previous{
+    left: 2%;
+    transition: all ease 0.2s;
+}
+#btn-previous:hover{
+    cursor: pointer;
+    left: 0%;
+    scale: 1.05;
+    opacity: 0.9;
+}
+#btn-next{
+    right: 16%;
+    transition: all ease 0.2s;
+}
+#btn-next:hover{
+    cursor: pointer;
+    right: 14%;
+    scale: 1.05;
+    opacity: 0.9;
 }
 
 
