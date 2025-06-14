@@ -474,6 +474,40 @@ nav>img{
 #p-12-text-box{
     font-size: 1.5vw;
 }
+#compaines-wrapper{
+    height: 30vh;
+    width: 100vw;
+    /* background-color: azure; */
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+#img-scroller{
+    display: flex;
+    white-space: nowrap;
+    height: 100%;
+    animation: autoScroll 8s linear infinite;
+}
+#img-scroller img{
+    height: 6vw;
+    width: 16vw;
+    object-fit: cover;
+    margin-left: 5vw;
+}
+.img-set{
+    display: flex;
+    align-items: center;
+}
+@keyframes autoScroll{
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+}
 
 
 /* footer */
