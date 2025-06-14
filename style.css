@@ -296,12 +296,11 @@ nav>img{
 #p-9-right{
     height: 100%;
     width: 60%;
-    /* background-color: purple; */
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#p-9-right>img{
+#p-9-right img{
     height: 70%;
     width: 95%;
     object-fit: cover;
@@ -320,16 +319,163 @@ nav>img{
 .sections{
     width:93%;
     padding-left: 40%;
-    margin-bottom: 5%;
     gap: 10%;
+    margin-bottom: 4%;
 }
 .sections>h1{
     font-size: 2vw;
     margin-bottom: 3%;
-        font-weight: 300;
+    font-weight: 300;
     font-family: b;
 }
 .sections>p{
     font-family: a;
     font-size: 1.3vw;
+}
+
+
+/* page 11 */
+#page-11{
+    height: 140vh;
+    width: 100vw;
+    background-color: aliceblue;
+    padding: 0% 1%;
+}
+#page-11>h2{
+    font-size: 4.5vw;
+    font-family: c;
+    font-weight: 500;
+    margin:0% 2% 2% 10%;
+}
+#p-11-section{
+    height: 120vh;
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    gap: 1%;
+    place-items: center;
+}
+#p-11-sec-1,#p-11-sec-2,#p-11-sec-3{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    margin: 3% 0%;
+    overflow: hidden;
+}
+#img-1,#img-2,#img-3{
+    overflow: hidden;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+#p-11-sec-1:hover #img-1>img{
+    scale: 1.05;
+    cursor: pointer;
+}
+#p-11-sec-2:hover #img-2>img{
+    scale: 1.05;
+    cursor: pointer;
+}
+#p-11-sec-3:hover #img-3>img{
+    scale: 1.05;
+    cursor: pointer;
+}
+#p-11-section img{
+    height: 35vh;
+    width: 40vw;
+    object-fit: cover;
+    transition: all ease-in-out 0.5s;
+}
+.date{
+    font-size: 1.5vw;
+    color: rgba(128, 128, 128, 0.918);
+}
+.p-11-dets{
+    font-size: 2vw;
+}
+
+/* page 12 */
+#page-12{
+    height: 100vh;
+    width: 100vw;
+    background-color: #02268E;
+    position: relative;
+}
+#p-12-text-box{
+    width: 40%;
+    color: white;
+    top: 20%;
+    right: 5%;
+    position: absolute;
+    font-family: a;
+}
+#p-12-text-box>h1{
+    font-size: 5vw;
+    font-weight: 100;
+
+}
+#p-12-text-box{
+    font-size: 1.5vw;
+}
+
+
+/* footer */
+footer{
+    min-height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    font-family: a;
+    position: relative;
+}
+#f-1{
+    width: 30%;
+    margin: 0% 0% 1% 10%;
+}
+#f-1>h1{
+    font-size: 4.5vw;
+    font-weight: 200;
+    padding-top: 10%;
+    line-height: 5vw;
+    margin-bottom: 2%;
+}
+#f-1>button{
+    background-color: #0841DE;
+    color: white;
+    font-size: 1.2vw;
+    font-family: a;
+    padding: 2% 4%;
+    border-radius: 50px;
+    border: none;
+    margin-bottom: 3%;
+}
+footer>ol>li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2% 5%;
+    font-size: 3vw;
+    position: relative;
+}
+footer>ol>li>i{
+    font-size: 1.5vw;
+    z-index: 9;
+}
+footer>ol>li>p{
+    z-index: 9;
+}
+.line-div{
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+}
+.overlay{
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    background-color: #0A3CCE;
+    left:0%;
+    transition: all ease 0.5s
+}
+footer>ol>li:hover .overlay{
+    height: 100%;
 }
