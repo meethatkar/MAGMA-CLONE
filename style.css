@@ -276,7 +276,38 @@ nav>img{
     height: 100vh;
     width: 100vw;
     background-color: #093DCD;
+    display: flex;
 }
+#p-9-left{
+    height: 100%;
+    width: 40%;
+    font-size: 3vw;
+    font-family: a;
+    color: white;
+    text-align: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5%;
+}
+#p-9-left>h1{
+    font-weight: 200;
+}
+#p-9-right{
+    height: 100%;
+    width: 60%;
+    /* background-color: purple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#p-9-right>img{
+    height: 70%;
+    width: 95%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
 
 /* page -10 */
 #page-10{
