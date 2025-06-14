@@ -236,11 +236,25 @@ nav>img{
 }
 
 
+/* TEMP PAGE */
+#temp-page{
+    height: 60vh;
+    width: 100vw;
+    background-color: #093DCD;
+}
+
+
 /* page-8  */
+#pg-8-wrapper{
+    background-color: #093DCD;
+}
 #page-8{
     height: 100vh;
     width: 100vw;
     position: relative;
+    background-color: #093DCD;
+    scale: 2.5;
+    opacity: 0;
 }
 #page-8>video{
     height: 100%;
@@ -253,6 +267,7 @@ nav>img{
     text-align: center;
     left: 50%;
     transform: translate(-50%,-3%);
+    z-index: 3;
 }
 #page-8 h2{
     font-size: 5vw;
