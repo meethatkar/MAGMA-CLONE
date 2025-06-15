@@ -54,8 +54,11 @@ nav>img{
     /* margin-top: -5vh; */
 }
 #nav-btn{
-    width: 20%;
-    text-align: end;
+    width: 25%;
+    /* text-align: end; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 #nav-btn>button{
     margin-top: 2%;
@@ -68,6 +71,53 @@ nav>img{
     border: 1px solid white;
     margin-right: 4%;
     font-family: a;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    height: 3vw;
+}
+#btn-1>p{
+    position: relative;
+    z-index: 20;
+}
+#p-2{
+    transform: rotateX(180deg) translateY(-150%);
+    color: #0841DE;
+    transition: all ease-in-out 0.5s;
+}
+#p-1{
+    transform: rotateX(0deg) translateY(0%);
+    transition: all ease-in-out 0.5s;
+}
+/* BUTTON HOVER EFFECT [CUSTOM ADDED] */
+#btn-1:hover #p-1{
+    transform: rotateX(180deg) translateY(-150%);
+}
+#btn-1:hover #p-2{
+    transform: rotateX(0deg) translateY(-100%);
+}
+#btn-1::after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    color: transparent;
+    padding: 3% 4%;
+    border-radius: 50%;
+    /* font-size: 1.1vw; */
+    /* margin-right: 4%; */
+    position: absolute;
+    bottom: -120%;
+    left: 0%;
+    z-index: 15;
+    transition: all ease-in-out 0.5s;
+    /* margin-right: 4%; */
+    /* display: flex; */
+}
+#btn-1:hover::after{
+    /* cursor: pointer; */
+    bottom: 0%;
+    border-radius: 0%;
 }
 
 #pg-1-text{
@@ -95,15 +145,105 @@ nav>img{
     color: white;
 }
 #text-lower>button{
-    padding: 2% 5%;
+    font-family:c;
+    padding: 0.5% 3%;
     font-size: 1.1vw;
     border-radius: 20px;
-    border: 1px solid white;
     background-color: white;
     color: #0841DE;
-    font-weight: 600;
+    font-weight: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
 }
+#text-lower>button::after{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    bottom: -100%;
+    border-radius: 50%;
+    transition: all ease-in-out 0.5s;
+}
+#text-lower>button>span{
+    position: relative;
+    z-index: 20;
+}
+#pg-1-s-1{
+    transform: rotateX(0deg) translateY(40%);
+    transition: all ease-in-out 0.5s;
+}
+#pg-1-s-2{
+    transform: rotateX(180deg) translateY(140%);
+    color: white;
+    transition: all ease-in-out 0.5s;
+}
+#text-lower>button:hover::after{
+    border-radius: 0%;
+    bottom: 0%;
+}
+#text-lower>button:hover #pg-1-s-1{
+    transform: rotateX(180deg) translateY(-200%);
 
+}
+#text-lower>button:hover #pg-1-s-2{
+    transform: rotateX(0deg) translateY(-40%);
+
+}
+#scroll-msg{
+    position: absolute;
+    z-index: 20;
+    bottom: 10%;
+    right: 3%;
+    font-size: 1.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: a;
+    /* background-color: aqua; */
+}
+#arrow-div{
+    position: relative;
+    animation-name: arrow-movement;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    margin-bottom: 20%;
+    transform: translateY(0%);
+    transition: transform 0.5s ease-in-out;
+}
+#arrow-div>i{
+    transition: all 0.5s ease-in-out;
+}
+#scroll-msg>span{
+    transition: all 0.5s ease-in-out;
+}
+#scroll-msg:hover #arrow-div{
+    animation-play-state:paused;
+    /* cursor: pointer; */
+}
+#scroll-msg:hover i{
+    transform: translateY(370%);
+}
+#scroll-msg:hover span{
+    transform: translateY(20%);
+}
+@keyframes arrow-movement{
+    0%{
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(50%);        
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
 /* PAGE 2 */
 #page-2{
     height: 100vh;
