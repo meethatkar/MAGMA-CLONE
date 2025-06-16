@@ -675,7 +675,7 @@ nav>img{
 
 /* footer */
 footer{
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     background-color: black;
     color: white;
@@ -877,5 +877,99 @@ footer>ol>li:hover .overlay{
     #p-9-right{
         width: 100%;
         align-items: center;
+    }
+    #p-9-right>button{
+        font-size: 6vw;
+    }
+    #btn-previous{
+        left: 10%;
+    }
+    #btn-next{
+        right: 10%;
+    }
+    #btn-previous:hover{
+        left: 7%;
+        scale: 1.03;
+    }
+    #btn-next:hover{
+        right: 7%;
+        scale: 1.03;
+    }
+
+    .sections{
+        padding-left: 10%;
+        margin-bottom: 15%;
+    }
+    .sections>h1{
+        font-size: 6vw;
+    }
+
+    .sections>p{
+        font-size: 4vw;
+    }
+    #page-11{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #page-11>h2{
+        margin-top: 5%;
+        font-size: 10vw;
+    }
+    #p-11-section{
+        width: 100%;
+        height: 180vh;
+    }
+    #p-11-sec-1,#p-11-sec-2,#p-11-sec-3{
+        flex-direction: column;
+        margin-bottom: 10%;
+        /* overflow: auto; */
+    }
+    #img-1>img,#img-2>img,#img-3>img{
+        width: 100%;
+    }
+    .date{
+        margin-top: 2%;
+        font-size: 4.5vw;
+    }
+    .p-11-dets{
+        font-size: 5vw;
+    }
+    #page-12{
+        height: 50vh;
+    }
+    #p-12-text-box{
+        width: 80%;
+    }
+    #p-12-text-box>h1{
+        font-size: 10vw;
+        line-height: 10vw;
+    }
+    #p-12-text-box>p{
+        margin-top: 5%;
+        font-size: 4.5vw;
+    }
+
+    #compaines-wrapper{
+        bottom: -10%;
+        margin-top: 5%;
+    }
+    #img-scroller img{
+        height: 10vw;
+        width: 20vw;
+    }
+    footer{
+        height: 43vh;
+    }
+    #f-1{
+        width: 60%;
+    }
+    #f-1>h1{
+        font-size: 7vw;
+        line-height: 7vw;
+    }
+    #f-1>button{
+        font-size: 3vw;
+        margin-top: 5%;
     }
 }
