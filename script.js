@@ -223,7 +223,7 @@ function canvas1() {
         end: "250% top",
     });
 }
-canvas1();
+// canvas1();
 
 
 // page 4 clutter
@@ -399,7 +399,7 @@ function canvas2() {
         end: "250% top",
     });
 }
-canvas2();
+// canvas2();
 
 //      CLUTTER FOR PAGE 6
 clutter = "";
@@ -407,7 +407,7 @@ var words = document.querySelector("#page-6>h1").textContent.split(" ");
 words.forEach((word) => {
     clutter += `<span> ${word} </span>`;
     document.querySelector("#page-6>h1").innerHTML = clutter;
-    console.log(clutter);
+    // console.log(clutter);
 
 });
 
@@ -656,7 +656,7 @@ https://thisismagma.com/assets/home/lore/seq/134.webp?2
         end: "250% top",
     });
 }
-canvas3();
+// canvas3();
 
 //  canvas 3 (circle effect)
 gsap.to(".page-7-cir",{
@@ -734,4 +734,32 @@ nextBtn.addEventListener("click", () => {
     }
     console.log(counter);
     slideImg();
+})
+
+
+// MENUI TOGGLE 
+var navBtn = document.querySelector("#nav-mobile>button");
+var navItemsBtn = document.querySelector("#n-m-head>button");
+var mobileNav = document.querySelector("#nav-mobile");
+var mobileItemsNav = document.querySelector("#nav-mobile-slider");
+console.log(navBtn);
+
+navBtn.addEventListener("click",()=>{
+    console.log(navBtn);
+    mobileNav.style.opacity = "0";
+    mobileNav.style.zIndex = "20";
+    mobileItemsNav.style.zIndex = "30";
+    mobileItemsNav.style.opacity = "1";
+    mobileItemsNav.style.transform = 'translateX(0%)'
+    // mobileItemsNav.style.scale = "1";
+})
+
+navItemsBtn.addEventListener("click",()=>{
+    console.log(navBtn);
+    mobileNav.style.opacity = "1";
+    mobileItemsNav.style.opacity = "0";
+    mobileNav.style.zIndex = "30";
+    mobileItemsNav.style.zIndex = "20";
+    mobileItemsNav.style.transform = 'translateX(30%)';
+    // mobileItemsNav.style.scale = "0.8";
 })
