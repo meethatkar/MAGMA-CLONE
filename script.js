@@ -223,7 +223,7 @@ function canvas1() {
         end: "250% top",
     });
 }
-// canvas1();
+canvas1();
 
 
 // page 4 clutter
@@ -399,7 +399,7 @@ function canvas2() {
         end: "250% top",
     });
 }
-// canvas2();
+canvas2();
 
 //      CLUTTER FOR PAGE 6
 clutter = "";
@@ -656,7 +656,7 @@ https://thisismagma.com/assets/home/lore/seq/134.webp?2
         end: "250% top",
     });
 }
-// canvas3();
+canvas3();
 
 //  canvas 3 (circle effect)
 gsap.to(".page-7-cir",{
