@@ -675,7 +675,7 @@ nav>img{
 
 /* footer */
 footer{
-    height: 100vh;
+    height: 130vh;
     width: 100vw;
     background-color: black;
     color: white;
@@ -736,6 +736,50 @@ footer>ol>li:hover .overlay{
     height: 100%;
 }
 
+/* LOADER  */
+#loader-container{
+    inset: 0;       /* MAKE top:0, left:0, right:0, bottom:0 (all at once)*/
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    background-color: #0a4aece3;
+}
+.dots{
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
+    background-color: white;
+    animation-name: loading-dots;
+    /* transition: all 0.5s ease-in-out; */
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    scale: 0;
+}
+.dots:nth-child(1){
+    animation-delay: 0.3s;
+}
+.dots:nth-child(2){
+    animation-delay: 0.5s;
+}
+.dots:nth-child(3){
+    animation-delay: 0.7s;
+}
+
+@keyframes loading-dots{
+    0%,80%,100%{
+        opacity: 0;
+        scale: 0;
+    }
+    40%{
+        opacity: 1;
+        scale: 1;
+    }
+}
+/* RESPONSIVE MENU */
     #nav-mobile{
         display: none;
         height: 9%;
