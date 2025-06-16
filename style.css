@@ -18,6 +18,7 @@
 html,body{
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 #main{
@@ -746,6 +747,7 @@ footer>ol>li:hover .overlay{
     justify-content: center;
     gap: 5%;
     background-color: #0a4aece3;
+    pointer-events: none;
 }
 .dots{
     height: 3vw;
