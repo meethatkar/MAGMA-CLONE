@@ -18,13 +18,13 @@
 html,body{
     height: 100%;
     width: 100%;
-    overflow: hidden;
 }
 
 #main{
 overflow: hidden;
 position: relative;
 background-color: #0F37C9;
+pointer-events: none;
 }
 /* page-1 */
 #page-1{
@@ -1017,5 +1017,11 @@ footer>ol>li:hover .overlay{
     #f-1>button{
         font-size: 3vw;
         margin-top: 5%;
+    }
+    footer>ol>li{
+        font-size: 5vw;
+    }
+    footer>ol>li>i{
+        font-size: 3vw;
     }
 }

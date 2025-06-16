@@ -636,5 +636,5 @@ navItemsBtn.addEventListener("click",()=>{
 var loader = document.querySelector("#loader-container");
 window.addEventListener("load",()=>{
     loader.style.zIndex=0;  
-    document.body.style.overflow = "auto";  
+    document.querySelector("#main").style.pointerEvents = "all";
 })
