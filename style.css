@@ -1023,4 +1023,7 @@ footer>ol>li:hover .overlay{
     footer>ol>li>i{
         font-size: 3vw;
     }
+    #loader-container{
+        background-color: #04226ff7;
+    }
 }
