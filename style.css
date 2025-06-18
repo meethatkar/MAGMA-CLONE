@@ -740,14 +740,13 @@ footer>ol>li:hover .overlay{
 /* LOADER  */
 #loader-container{
     inset: 0;       /* MAKE top:0, left:0, right:0, bottom:0 (all at once)*/
-    position: absolute;
+    position: fixed;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5%;
     background-color: #0a4aece3;
-    pointer-events: none;
 }
 .dots{
     height: 3vw;
